@@ -22,14 +22,14 @@ def render_progress_circle(percent, color, label=""):
                 width: 105px;
                 height: 105px;
                 border-radius: 50%;
-                background-color: #0e1117;  /* inner hole for thinner ring */
+                background-color: #0e1117;
                 font-size: 1.5em;
                 font-weight: bold;
                 color: {color};
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                line-height: 1;
+                text-align: center;
+                line-height: 105px; 
+                z-index: 1; /* keep text above everything */
+                box-sizing: border-box;
             ">
                 {percent}%
             </div>
