@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import sys
+import time
 from pathlib import Path
 
 # Add parent directory to path to import from src
@@ -265,8 +266,13 @@ st.markdown("---")
 
 # --- Handle upload ---
 resume_text = ""
+upload_container = st.container()
+
 if uploaded_file:
     resume_text = extract_resume_text(uploaded_file)
+    st.session_state["resume_file"] = uploaded_file
+    st.session_state["resume_text"] = resume_text
+
     st.markdown(
     """
     <div style="
@@ -287,6 +293,20 @@ if uploaded_file:
             resume_text[:10000] + ("..." if len(resume_text) > 10000 else ""),
             height=400
         )
+
+else:
+    # If user clicked X (deleted resume)
+    if "resume_file" in st.session_state:
+        # Clear resume data
+        st.session_state.pop("resume_file", None)
+        st.session_state.pop("resume_text", None)
+
+        # Clear job matches too
+        st.session_state.pop("recommendations", None)
+
+        # Just visually refresh by clearing the container, not rerunning
+        upload_container.empty()
+        st.toast("Resume deleted.", icon="🗑️")
 
 # --- Job matching section ---
 if st.button("Find Matching Jobs", type="primary", use_container_width=True):
