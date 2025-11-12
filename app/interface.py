@@ -20,20 +20,28 @@ import docx2txt
 st.set_page_config(page_title="Resume-to-Job Match", page_icon="💼", layout="wide")
 
 # Custom button style
+
 st.markdown(
     """
     <style>
-    div.stButton > button:first-child {
+    /* Base button look */
+    div.stButton > button[kind="primary"] {
         background: linear-gradient(90deg, #6ac5fe, #daf0ff);
         color: black;
         border-radius: 10px;
         height: 3rem;
-        font-weight: 600;
         border: none;
+        font-size: 1.05rem;
     }
-    div.stButton > button:hover {
+    div.stButton > button[kind="primary"]:hover {
         background: linear-gradient(90deg, #daf0ff, #6ac5fe);
         color: black;
+    }
+
+    /* Force bold on the label inside the button */
+    div.stButton > button[kind="primary"],
+    div.stButton > button[kind="primary"] * {
+        font-weight: 600 !important;
     }
     </style>
     """,
