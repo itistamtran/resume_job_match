@@ -48,6 +48,30 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+st.markdown(
+    """
+    <style>
+    div.stButton > button[kind="secondary"] {
+        color: #6ac5fe;
+        border: 2px solid transparent;
+        border-radius: 10px;
+        height: 3rem;
+        font-weight: 800 !important;
+        font-size: 1.05rem;
+        transition: all 0.3s ease;
+    }
+    div.stButton > button[kind="secondary"]:hover {
+        background: linear-gradient(#0e1117, #0e1117) padding-box,
+                    linear-gradient(90deg, #6ac5fe, #daf0ff) border-box;
+        color: #6ac5fe;
+        transform: translateY(-2px);
+        box-shadow: 0 0 10px rgba(106, 197, 254, 0.3);
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # --- Custom CSS for a modern UI ---
 st.markdown(
     """
@@ -73,6 +97,7 @@ st.markdown(
         text-align: center;
         color: #777;
         font-size: 0.9em;
+        margin-top: 3em;
     }
     .job-description ul li {
         position: relative !important;
@@ -390,7 +415,7 @@ if 'recommendations' in st.session_state and st.session_state['recommendations']
         st.markdown("<br>", unsafe_allow_html=True)
         left, mid, right = st.columns([2, 1, 2])
         with mid:
-            if st.button("Load more jobs ⤵", use_container_width=True):
+            if st.button("Load more jobs ⤵", type="secondary", use_container_width=True):
                 st.session_state.visible_jobs += jobs_per_page
                 st.rerun()
 
