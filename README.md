@@ -3,6 +3,8 @@
 This project uses **Sentence Transformers** to analyze the similarity between resumes and job descriptions.  
 It converts text into embeddings, computes cosine similarity, and ranks top job matches with a clean **Streamlit** interface.
 
+🌐 **Live App:** [resumejobmatch-ai.streamlit.app](https://resumejobmatch-ai.streamlit.app/)
+
 ---
 
 ## Features
