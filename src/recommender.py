@@ -19,7 +19,7 @@ class JobRecommender:
         self.job_data = job_data.reset_index(drop=True)
         
     def find_similar_jobs(self, resume_embedding: np.ndarray, 
-                         top_k: int = 30) -> List[Tuple[int, float]]:
+                         top_k: int = 50) -> List[Tuple[int, float]]:
         """
         Find most similar jobs to the resume
         
@@ -46,7 +46,7 @@ class JobRecommender:
         return results
     
     def recommend(self, resume_text: str, embedder, 
-                  top_k: int = 30) -> pd.DataFrame:
+                  top_k: int = 50) -> pd.DataFrame:
         """
         Get job recommendations for a resume
         

@@ -260,7 +260,7 @@ if st.button("Find Matching Jobs", type="primary", use_container_width=True):
     if resume_text.strip():
         with st.spinner("🔍 Finding your best matches..."):
             # Use the recommender to get matches
-            results_df = recommender.recommend(resume_text, embedder, top_k=30)
+            results_df = recommender.recommend(resume_text, embedder, top_k=50)
             st.session_state['recommendations'] = results_df
     else:
         st.warning("ᵎ!ᵎ Please upload a valid resume file first.")
@@ -305,6 +305,7 @@ if 'recommendations' in st.session_state and st.session_state['recommendations']
         salary_max = getattr(row, 'salary_max', 0)
         date_posted = getattr(row, 'date_posted', 'Unknown Date')
         display_job = getattr(row, 'job_description', getattr(row, 'description', ''))
+        job_url = getattr(row, 'url', '')
 
         # Salary info
         salary_info = ""
@@ -341,7 +342,40 @@ if 'recommendations' in st.session_state and st.session_state['recommendations']
                 )
                 render_job_description(display_job, idx)
 
-            st.markdown("<hr>", unsafe_allow_html=True)
+                # Apply job button
+                if job_url and job_url.strip():
+                    st.markdown("<br>", unsafe_allow_html=True)
+                    st.markdown(
+                        f"""
+                        <style>
+                        .apply-btn {{
+                            background: linear-gradient(90deg, #6ac5fe, #daf0ff);
+                            color: black !important;
+                            border: none;
+                            border-radius: 8px;
+                            padding: 8px 18px;
+                            font-size: 1em;
+                            font-weight: 600;
+                            cursor: pointer;
+                            transition: all 0.3s ease;
+                            box-shadow: 0 2px 8px rgba(106, 197, 254, 0.3);
+                            text-decoration: none !important;
+                            display: inline-block;
+                        }}
+                        .apply-btn:hover {{
+                            background: linear-gradient(90deg, #daf0ff, #6ac5fe);
+                            box-shadow: 0 4px 12px rgba(106, 197, 254, 0.5);
+                            transform: translateY(-2px);
+                            color: black !important;
+                            text-decoration: none !important;
+                        }}
+                        </style>
+                        <a href="{job_url}" target="_blank" class="apply-btn">Apply Now</a>
+                        """,
+                        unsafe_allow_html=True,
+                    )
+
+        st.markdown("<hr>", unsafe_allow_html=True)
 
     # --- Load more button or end message ---
     if visible_jobs < total_jobs:

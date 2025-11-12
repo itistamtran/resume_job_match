@@ -5,3 +5,5 @@ __pycache__
 .ipynb_checkpoints/
 
 .DS_Store
+
+data/adzuna_jobs_with_direct_links.csv
