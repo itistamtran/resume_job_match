@@ -16,16 +16,20 @@ def render_progress_circle(percent, color, label=""):
         ">
             <div style="
                 position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
                 width: 105px;
                 height: 105px;
                 border-radius: 50%;
                 background-color: #0e1117;  /* inner hole for thinner ring */
-                display: flex;
-                align-items: center;
-                justify-content: center;
                 font-size: 1.5em;
                 font-weight: bold;
                 color: {color};
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                line-height: 1;
             ">
                 {percent}%
             </div>
