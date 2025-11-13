@@ -1,0 +1,159 @@
+/* --- Fade-in animation for header --- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 1.2s ease-in-out;
+}
+
+/* Centered title layout */
+.title-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+/* --- Browse files button styling --- */
+[data-testid="stFileUploader"] section button {
+  color: #6ac5fe !important;
+  border-radius: 8px !important;
+  padding: 10px 24px !important;
+  font-weight: 600 !important;
+  font-size: 0.95em !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 2px 8px rgba(106, 197, 254, 0.3) !important;
+}
+
+[data-testid="stFileUploader"] section button:hover {
+  background: linear-gradient(#0e1117, #0e1117) padding-box,
+    linear-gradient(90deg, #6ac5fe, #daf0ff) border-box;
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px rgba(106, 197, 254, 0.3);
+}
+
+/* --- Expander styling --- */
+[data-testid="stExpander"] summary:hover {
+  color: #6ac5fe !important;
+}
+[data-testid="stExpander"] svg {
+  fill: #6ac5fe !important;
+}
+[data-testid="stExpander"] {
+  border-color: #6ac5fe !important;
+}
+
+/* --- Primary button --- */
+div.stButton > button[kind="primary"] {
+  background: linear-gradient(90deg, #6ac5fe, #daf0ff);
+  color: black;
+  border-radius: 10px;
+  height: 3rem;
+  border: none;
+  font-size: 1.05rem;
+  font-weight: 600 !important;
+}
+div.stButton > button[kind="primary"]:hover {
+  background: linear-gradient(90deg, #daf0ff, #6ac5fe);
+  color: black;
+}
+
+/* --- Secondary button --- */
+div.stButton > button[kind="secondary"] {
+  color: #6ac5fe;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  height: 3rem;
+  font-weight: 800 !important;
+  font-size: 1.05rem;
+  transition: all 0.3s ease;
+}
+div.stButton > button[kind="secondary"]:hover {
+  background: linear-gradient(#0e1117, #0e1117) padding-box,
+    linear-gradient(90deg, #6ac5fe, #daf0ff) border-box;
+  color: #6ac5fe;
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px rgba(106, 197, 254, 0.3);
+}
+
+/* --- General UI --- */
+body {
+  background-color: #0e1117;
+  color: #fafafa;
+}
+.centered-title {
+  text-align: center;
+  font-size: 2.3em;
+  font-weight: 700;
+  color: #f5f5f5;
+  margin-bottom: 0.3em;
+}
+.subtext {
+  text-align: center;
+  color: #bbb;
+  font-size: 1.1em;
+  margin-bottom: 2em;
+}
+.footer {
+  text-align: center;
+  color: #777;
+  font-size: 0.9em;
+  margin-top: 3em;
+}
+
+/* --- Job descriptions --- */
+.job-description ul li {
+  position: relative !important;
+  padding-left: 14px !important;
+  color: #f0f0f0 !important;
+  margin-bottom: 0.6em !important;
+  list-style: none !important;
+}
+.job-description ul li::before {
+  content: "" !important;
+  position: absolute !important;
+  left: -1.2em !important;
+  top: 0.55em !important;
+  width: 0.55em !important;
+  height: 0.55em !important;
+  border-radius: 50% !important;
+  background: linear-gradient(90deg, #6ac5fe, #daf0ff) !important;
+  box-shadow: 0 0 6px rgba(106, 197, 254, 0.6) !important;
+}
+
+/* --- Section titles --- */
+.section-title,
+strong {
+  background: linear-gradient(90deg, #6ac5fe, #daf0ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
+.section-title {
+  font-size: 1.1em;
+  margin-top: 1.2em;
+  margin-bottom: 0.8em;
+}
+strong {
+  font-size: 1.1em;
+}
+
+/* --- Centered elements --- */
+.circle-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}

@@ -16,151 +16,44 @@ from src.recommender import JobRecommender
 import pdfplumber
 import fitz  # PyMuPDF
 import docx2txt
+import os
+import base64
 
 # --- Page Configuration ---
 st.set_page_config(page_title="Resume-to-Job Match", page_icon="💼", layout="wide")
 
-# Custom button style
+# --- Load custom CSS ---
+def load_custom_css(file_name: str):
+    # Automatically find the CSS file path relative to this file
+    css_path = os.path.join(os.path.dirname(__file__), file_name)
+    with open(css_path) as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-st.markdown(
-    """
-    <style>
-    /* Base button look */
-    div.stButton > button[kind="primary"] {
-        background: linear-gradient(90deg, #6ac5fe, #daf0ff);
-        color: black;
-        border-radius: 10px;
-        height: 3rem;
-        border: none;
-        font-size: 1.05rem;
-    }
-    div.stButton > button[kind="primary"]:hover {
-        background: linear-gradient(90deg, #daf0ff, #6ac5fe);
-        color: black;
-    }
+# Load CSS file
+load_custom_css("style.css")
 
-    /* Force bold on the label inside the button */
-    div.stButton > button[kind="primary"],
-    div.stButton > button[kind="primary"] * {
-        font-weight: 600 !important;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
-st.markdown(
-    """
-    <style>
-    div.stButton > button[kind="secondary"] {
-        color: #6ac5fe;
-        border: 2px solid transparent;
-        border-radius: 10px;
-        height: 3rem;
-        font-weight: 800 !important;
-        font-size: 1.05rem;
-        transition: all 0.3s ease;
-    }
-    div.stButton > button[kind="secondary"]:hover {
-        background: linear-gradient(#0e1117, #0e1117) padding-box,
-                    linear-gradient(90deg, #6ac5fe, #daf0ff) border-box;
-        color: #6ac5fe;
-        transform: translateY(-2px);
-        box-shadow: 0 0 10px rgba(106, 197, 254, 0.3);
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
-# --- Custom CSS for a modern UI ---
-st.markdown(
-    """
-    <style>
-    body {
-        background-color: #0e1117;
-        color: #fafafa;
-    }
-    .centered-title {
-        text-align: center;
-        font-size: 2.3em;
-        font-weight: 700;
-        color: #f5f5f5;
-        margin-bottom: 0.3em;
-    }
-    .subtext {
-        text-align: center;
-        color: #bbb;
-        font-size: 1.1em;
-        margin-bottom: 2em;
-    }
-    .footer {
-        text-align: center;
-        color: #777;
-        font-size: 0.9em;
-        margin-top: 3em;
-    }
-    .job-description ul li {
-        position: relative !important;
-        padding-left: 14px !important;
-        color: #f0f0f0 !important;
-        margin-bottom: 0.6em !important;
-        list-style: none !important;
-    }
-    .job-description ul li::before {
-        content: "" !important;
-        position: absolute !important;
-        left: -1.2em !important;
-        top: 0.55em !important;
-        width: 0.55em !important;
-        height: 0.55em !important;
-        border-radius: 50% !important;
-        background: linear-gradient(90deg, #6ac5fe, #daf0ff) !important;
-        box-shadow: 0 0 6px rgba(106, 197, 254, 0.6) !important;
-    }
-    .job-description span[style*="color:#6ac5fe"],
-    span[style*="color: rgb(91, 180, 80)"] {
-        color: #6ac5fe !important;
-    }
-    .section-title {
-        font-size: 1.1em;
-        font-weight: 700;
-        margin-top: 1.2em;
-        margin-bottom: 0.8em;
-        background: linear-gradient(90deg, #6ac5fe, #daf0ff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-    strong {
-        background: linear-gradient(90deg, #6ac5fe, #daf0ff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        font-size: 1.1em;
-        font-weight: 700;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
-# CSS for vertical centering inside columns
-st.markdown("""
-    <style>
-        .circle-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            position: relative;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-    </style>
-""", unsafe_allow_html=True)
+# --- Encode GIF as base64 ---
+def get_base64_image(image_path):
+    with open(image_path, "rb") as f:
+        data = f.read()
+    return base64.b64encode(data).decode()
 
 
 # --- Header ---
-st.markdown('<h1 class="centered-title">💼 Resume-to-Job Match Recommendation System</h1>', unsafe_allow_html=True)
+gif_base64 = get_base64_image("assets/briefcase.gif")
+
+st.markdown(
+    f"""
+    <div class="title-wrapper fade-in">
+        <div class="gradient-icon">
+            <img src="data:image/gif;base64,{gif_base64}" alt="briefcase" class="gradient-mask" width="50">
+        </div>
+        <h1 class="centered-title">Resume-to-Job Match Recommendation System</h1>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
 st.markdown('<p class="subtext">Upload your resume and get job recommendations based on semantic similarity.</p>', unsafe_allow_html=True)
 
 # --- Load data and models ---
@@ -276,7 +169,11 @@ if uploaded_file:
     st.markdown(
     """
     <div style="
-        color:#6ac5fe;
+        display: inline-block;
+        background: linear-gradient(90deg, #6ac5fe, #daf0ff);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
         font-weight:500;
         margin-top:10px;
         margin-bottom:10px;
