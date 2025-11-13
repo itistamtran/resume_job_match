@@ -44,19 +44,16 @@ gif_base64 = get_base64_image("assets/briefcase.gif")
 
 st.markdown(
     f"""
-    <div style="text-align:center;">
-        <div class="gradient-icon" style="display:inline-block;">
-            <img src="data:image/gif;base64,{gif_base64}" 
-                 alt="briefcase" 
-                 class="gradient-mask" 
-                 width="60">
-        </div>
+    <div style="text-align:center; margin-bottom: 0px;">
+        <!--force refresh-->
+        <img src="data:image/gif;base64,{gif_base64}"
+             width="60"
+             style="display:block; margin: 0 auto;" />
+        <h1>Resume-to-Job Match Recommendation System</h1>
     </div>
     """,
     unsafe_allow_html=True
 )
-
-st.markdown('<h1 class="centered-title">Resume-to-Job Match Recommendation System</h1>', unsafe_allow_html=True)
 st.markdown('<p class="subtext">Upload your resume and get job recommendations based on semantic similarity.</p>', unsafe_allow_html=True)
 
 # --- Load data and models ---
