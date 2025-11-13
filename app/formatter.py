@@ -54,8 +54,7 @@ def format_job_description(text):
             formatted_parts.append("<h4 class='section-title'>Job Description</h4>")
             for item in items:
                 formatted_parts.append(
-                    f"<div style='margin-left:1.5em; margin-bottom:0.7em; line-height:1.7;'>"
-                    f"<span style='color:#6ac5fe; margin-right:8px;'>•</span>{item}</div>"
+                    f"<div class='job-bullet'><span class='job-bullet-dot'>•</span>{item}</div>"
                 )
     else:
         # Process each detected section
@@ -79,8 +78,7 @@ def format_job_description(text):
 
             for item in items:
                 formatted_parts.append(
-                    f"<div style='margin-left:1.5em; margin-bottom:0.7em; line-height:1.7;'>"
-                    f"<span style='color:#6ac5fe; margin-right:8px;'>•</span>{item}</div>"
+                    f"<div class='job-bullet'><span class='job-bullet-dot'>•</span>{item}</div>"
                 )
 
     # --- Final HTML ---
