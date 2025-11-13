@@ -36,9 +36,9 @@
 
 [data-testid="stFileUploader"] section button:hover {
   background: linear-gradient(#0e1117, #0e1117) padding-box,
-    linear-gradient(90deg, #6ac5fe, #daf0ff) border-box;
+    linear-gradient(90deg, #6ac5fe, #daf0ff) border-box !important;
   transform: translateY(-2px);
-  box-shadow: 0 0 10px rgba(106, 197, 254, 0.3);
+  box-shadow: 0 0 10px rgba(106, 197, 254, 0.3) !important;
 }
 
 /* --- Expander styling --- */
@@ -103,6 +103,7 @@ body {
   font-size: 1.1em;
   margin-bottom: 2em;
 }
+
 .footer {
   text-align: center;
   color: #777;
