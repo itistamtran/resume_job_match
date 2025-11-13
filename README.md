@@ -15,7 +15,7 @@ It converts text into embeddings, computes cosine similarity, and ranks top job 
 - **Top Match Visualization** – displays best matches with match percentages
 - **Interactive UI** – built using Streamlit for quick exploration
 
-## Project Structure
+## Main Project Structure
 
 ```
 resume_job_match/
@@ -24,6 +24,7 @@ resume_job_match/
 │   └── description_toggle.py       # Toggle long job descriptions
 │   └── formatter.py                # Job text formatter
 │   └── progress_circle.py          # Circular progress visualization
+│   └── style.css
 ├── data/
 │   ├── Resume.csv                  # Resume dataset
 │   └── full_jobs_data.csv          # Job descriptions database
@@ -56,20 +57,13 @@ resume_job_match/
    cd resume-job-match
    ```
 
-2. **Create a virtual environment**
-
-   ```bash
-   conda create -n resumeapp4200 python=3.10
-   conda activate resumeapp4200
-   ```
-
-3. **Install dependencies**
+2. **Install dependencies**
 
    ```bash
    pip install -r requirements.txt
    ```
 
-4. **Running the Web Application**
+3. **Running the Web Application**
    Launch the Streamlit interface:
 
 ```bash
